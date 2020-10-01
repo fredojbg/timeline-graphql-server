@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+mongoose.set('debug', true);
 const bcrypt = require("bcrypt");
 
 const Schema = mongoose.Schema;
@@ -17,15 +18,15 @@ const UserSchema = new Schema(
       type: String,
       required: true
     }
-  },
-  { timestamps: true }
+  }
+  // { timestamps: true }
 );
 
-UserSchema.pre("save", function(next) {
+UserSchema.pre("save", function (next) {
   if (!this.isModified("password")) return next();
 
   this.password = bcrypt.hashSync(this.password, 10);
   next();
 });
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model("Users", UserSchema, 'user');
