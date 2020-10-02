@@ -41,6 +41,7 @@ const graphqlSettingsPerReq = async req => {
   };
 };
 
+
 const graphqlServer = GraphQLHTTP(graphqlSettingsPerReq);
 
 router.post("/graphql", graphqlServer);

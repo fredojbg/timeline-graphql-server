@@ -8,7 +8,7 @@ module.exports = {
   resolve: async (_, __, context) => {
     // if (!context.user) return null;
 
-    console.log(await UserModel.find({}))
+    // console.log(await UserModel.find({}))
 
     return await UserModel.find({});
     // return await PostModel.find({}).populate("user");

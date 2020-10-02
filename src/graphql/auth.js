@@ -5,10 +5,12 @@ const { jwtSecret } = require("./config");
 async function getUser(token) {
   if (!token) return { user: null };
 
+
   try {
     const decodedToken = jwt.verify(token.substring(4), jwtSecret);
 
     const user = await UserModel.findOne({ _id: decodedToken.id });
+
 
     return {
       user
@@ -19,7 +21,7 @@ async function getUser(token) {
 }
 
 function generateToken(user) {
-  return `JWT ${jwt.sign({ id: user._id }, jwtSecret, {
+  return `${jwt.sign({ id: user._id }, jwtSecret, {
     expiresIn: "12h"
   })}`;
 }
